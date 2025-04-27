@@ -61,3 +61,8 @@ INSERT INTO orders (customer_id, product_id, order_date, quantity, status) VALUE
 (3, 4, '2023-04-05', 1, 'cancelled'),
 (4, 3, '2023-05-20', 1, 'completed');
 """)
+
+
+conn.commit()
+cur.close()
+conn.close()
