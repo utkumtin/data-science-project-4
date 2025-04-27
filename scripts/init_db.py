@@ -10,7 +10,7 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 cur.execute("""
-CREATE TABLE Customers (
+CREATE TABLE customers (
     customer_id SERIAL PRIMARY KEY,
     full_name VARCHAR(100),
     email VARCHAR(100),
@@ -19,7 +19,7 @@ CREATE TABLE Customers (
 """)
 
 cur.execute("""
-CREATE TABLE Products (
+CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(100),
     price NUMERIC(10,2),
@@ -28,10 +28,10 @@ CREATE TABLE Products (
 """)
 
 cur.execute("""
-CREATE TABLE Orders (
+CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES Customers(customer_id),
-    product_id INT REFERENCES Products(product_id),
+    customer_id INT REFERENCES customers(customer_id),
+    product_id INT REFERENCES products(product_id),
     order_date DATE,
     quantity INT,
     status VARCHAR(20) -- örneğin: completed, cancelled
@@ -39,7 +39,7 @@ CREATE TABLE Orders (
 """)
 
 cur.execute("""
-INSERT INTO Customers (full_name, email, signup_date) VALUES
+INSERT INTO customers (full_name, email, signup_date) VALUES
 ('Ahmet Yılmaz', 'ahmet@example.com', '2022-01-15'),
 ('Ayşe Demir', 'ayse@example.com', '2022-05-22'),
 ('Mehmet Kaya', 'mehmet@example.com', '2022-07-30'),
@@ -47,7 +47,7 @@ INSERT INTO Customers (full_name, email, signup_date) VALUES
 """)
 
 cur.execute("""
-INSERT INTO Products (product_name, price, category) VALUES
+INSERT INTO products (product_name, price, category) VALUES
 ('Laptop', 15000.00, 'Electronics'),
 ('Smartphone', 8000.00, 'Electronics'),
 ('Coffee Machine', 1200.00, 'Home Appliances'),
@@ -55,7 +55,7 @@ INSERT INTO Products (product_name, price, category) VALUES
 """)
 
 cur.execute("""
-INSERT INTO Orders (customer_id, product_id, order_date, quantity, status) VALUES
+INSERT INTO orders (customer_id, product_id, order_date, quantity, status) VALUES
 (1, 1, '2023-02-10', 1, 'completed'),
 (2, 2, '2023-03-12', 2, 'completed'),
 (3, 4, '2023-04-05', 1, 'cancelled'),

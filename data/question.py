@@ -14,7 +14,7 @@ def create_view_completed_orders():
         with conn.cursor() as cur:
             cur.execute("""
                 CREATE OR REPLACE VIEW view_completed_orders AS
-                SELECT * FROM Orders WHERE status = 'completed';
+                SELECT * FROM orders WHERE status = 'completed';
             """)
             conn.commit()
 
@@ -23,7 +23,7 @@ def create_view_electronics_products():
         with conn.cursor() as cur:
             cur.execute("""
                 CREATE OR REPLACE VIEW view_electronics_products AS
-                SELECT * FROM Products WHERE category = 'Electronics';
+                SELECT * FROM products WHERE category = 'Electronics';
             """)
             conn.commit()
 
@@ -33,13 +33,13 @@ def total_spending_per_customer():
             cur.execute("""
                 WITH customer_spending AS (
                     SELECT o.customer_id, SUM(p.price * o.quantity) AS total_spent
-                    FROM Orders o
-                    JOIN Products p ON o.product_id = p.product_id
+                    FROM orders o
+                    JOIN products p ON o.product_id = p.product_id
                     WHERE o.status = 'completed'
                     GROUP BY o.customer_id
                 )
                 SELECT c.full_name, cs.total_spent
-                FROM Customers c
+                FROM customers c
                 JOIN customer_spending cs ON c.customer_id = cs.customer_id;
             """)
             return cur.fetchall()
@@ -61,7 +61,7 @@ def find_invalid_emails():
     with connect_db() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT * FROM Customers WHERE POSITION('@' IN email) = 0;
+                SELECT * FROM customers WHERE POSITION('@' IN email) = 0;
             """)
             return cur.fetchall()
 
@@ -69,7 +69,7 @@ def find_null_or_empty_emails():
     with connect_db() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT * FROM Customers WHERE email IS NULL OR email = '';
+                SELECT * FROM customers WHERE email IS NULL OR email = '';
             """)
             return cur.fetchall()
 
@@ -79,7 +79,7 @@ def extract_lastname_from_fullname():
             cur.execute("""
                 SELECT full_name, 
                 SUBSTRING(full_name FROM POSITION(' ' IN full_name) + 1) AS last_name
-                FROM Customers;
+                FROM customers;
             """)
             return cur.fetchall()
 
@@ -87,7 +87,7 @@ def concat_name_and_email():
     with connect_db() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT CONCAT(full_name, ' <', email, '>') AS contact_info FROM Customers;
+                SELECT CONCAT(full_name, ' <', email, '>') AS contact_info FROM customers;
             """)
             return cur.fetchall()
 
@@ -95,7 +95,7 @@ def cast_price_to_integer():
     with connect_db() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT product_name, CAST(price AS INTEGER) AS price_int FROM Products;
+                SELECT product_name, CAST(price AS INTEGER) AS price_int FROM products;
             """)
             return cur.fetchall()
 
@@ -103,7 +103,7 @@ def find_customers_not_example_email():
     with connect_db() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT * FROM Customers 
+                SELECT * FROM customers 
                 WHERE COALESCE(STRPOS(email, 'example'), 0) = 0;
             """)
             return cur.fetchall()
