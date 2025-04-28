@@ -11,23 +11,23 @@ from data.question import (
     create_view_electronics_products,
     total_spending_per_customer,
     order_details_with_total,
-    find_invalid_emails,
-    find_null_or_empty_emails,
-    extract_lastname_from_fullname,
-    concat_name_and_email,
-    cast_price_to_integer,
-    find_customers_not_example_email
+    get_customer_who_bought_most_expensive_product,
+    get_order_status_descriptions,
+    get_products_above_average_price,
+    get_customer_categories,
+    get_recent_customers,
+    get_most_ordered_product,
+    get_product_price_categories,
 )
 
-# Eğer fonksiyonlar bir modül içindeyse importu düzeltirsin buddy (örneğin your_module_name = db_functions gibi)
 
 def test_create_view_completed_orders():
     result = create_view_completed_orders()
-    assert result is None  # CREATE VIEW komutu bir şey döndürmez
+    assert result is None 
 
 def test_create_view_electronics_products():
     result = create_view_electronics_products()
-    assert result is None  # CREATE VIEW komutu bir şey döndürmez
+    assert result is None 
 
 def test_total_spending_per_customer():
     result = total_spending_per_customer()
@@ -39,37 +39,53 @@ def test_order_details_with_total():
     assert result is not None
     assert isinstance(result, list)
 
-def test_find_invalid_emails():
-    result = find_invalid_emails()
-    assert result is not None
-    assert isinstance(result, list)
-
-def test_find_null_or_empty_emails():
-    result = find_null_or_empty_emails()
-    assert result is not None
-    assert isinstance(result, list)
-
-def test_extract_lastname_from_fullname():
-    result = extract_lastname_from_fullname()
-    assert result is not None
+def test_get_customer_who_bought_most_expensive_product():
+    result = get_customer_who_bought_most_expensive_product()
     assert isinstance(result, list)
     if result:
-        assert 'last_name' in result[0] or isinstance(result[0], tuple)  # Tuple veya dict olabilir
+        assert isinstance(result[0], tuple)
 
-def test_concat_name_and_email():
-    result = concat_name_and_email()
-    assert result is not None
-    assert isinstance(result, list)
 
-def test_cast_price_to_integer():
-    result = cast_price_to_integer()
-    assert result is not None
+def test_get_order_status_descriptions():
+    result = get_order_status_descriptions()
     assert isinstance(result, list)
+    if result:
+        assert len(result[0]) == 3  # order_id, status, status_description
 
-def test_find_customers_not_example_email():
-    result = find_customers_not_example_email()
-    assert result is not None
+
+def test_get_products_above_average_price():
+    result = get_products_above_average_price()
     assert isinstance(result, list)
+    if result:
+        assert len(result[0]) == 2  # product_name, price
+
+
+def test_get_customer_categories():
+    result = get_customer_categories()
+    assert isinstance(result, list)
+    if result:
+        assert len(result[0]) == 2  # full_name, customer_category
+
+
+def test_get_recent_customers():
+    result = get_recent_customers()
+    assert isinstance(result, list)
+    if result:
+        assert isinstance(result[0][0], str)  # sadece isim geliyor
+
+
+def test_get_most_ordered_product():
+    result = get_most_ordered_product()
+    assert isinstance(result, list)
+    if result:
+        assert isinstance(result[0][0], str)  # ürün adı
+
+
+def test_get_product_price_categories():
+    result = get_product_price_categories()
+    assert isinstance(result, list)
+    if result:
+        assert len(result[0]) == 3  # product_name, price, price_category
 
 def send_post_request(url: str, data: dict, headers: dict = None):
     try:
@@ -106,7 +122,7 @@ def run_tests():
     url = "https://edugen-backend-487d2168bc6c.herokuapp.com/projectLog/"
     payload = {
         "user_id": 34,
-        "project_id": 4,
+        "project_id": 37,
         "user_score": round(user_score, 2),
         "is_auto": False
     }

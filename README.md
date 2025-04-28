@@ -28,9 +28,11 @@ sırasıyla kendi local veritabanınızda çalıştırınız.
 2. Electronics kategorisindeki ürünleri gösteren bir VIEW oluştur.
 3. Her müşterinin toplam harcamasını WITH kullanarak hesapla.
 4. Sipariş ve ürün detaylarını birleştirerek toplam tutar (price * quantity) hesapla.
-5. Email adresinde '@' karakteri olmayan müşterileri bul.
-6. NULL email veya boş email adresi olan müşterileri bul.
-7. Müşteri isimlerinden sadece soyisimleri çek. (SUBSTR, RIGHT kullanımı)
-8. İsim ve email'i CONCAT ile birleştirip yeni bir kolon oluştur.
-9. Price'ı CAST ile INTEGER yaparak listele.
-10. Email içinde 'example' kelimesi geçmeyen müşterileri listele (STRPOS + COALESCE).
+5. En pahalı ürünü almış kişinin full name değerini döndüren sorguyu yazınız.
+6. Sipariş durumu 'completed' olanlar 'Tamamlandı', 'cancelled' olanlar ise 'İptal Edildi' şeklinde değiştirilip, order_id, status ve status_description kolonlarını dönen sqli yazınız.
+7. Ortalama fiyatın üzerindeki ürünleri bulunuz.(Sorgu sadece prodduct_name ve price kolonlarını dönsün)
+8. Alışveriş sayısına göre en sadık müşterileri bulmak istiyoruz. Buna göre satış sayısı 5'ten büyük olanlara 'Sadık Müşteri', 2 ile 5 arasında olanlara 'Orta Seviye' diğer müşterilere de 'Yeni Müşteri' diyecek şekilde tüm müşterilerin isimlerini ve ve bu yeni tagi 'customer_category' ismiyle dönen sorguyu yazınız.
+9. Son 30 gün içinde sipariş veren müşterilerin isimlerini dönen sorguyu yazınız.
+10. En çok sipraiş verilen ürünü bulunuz.
+11. Ürün fiyatlarına göre etiketleme yapmak istiyoruz. Fiyatı 1000'den fazla olan ürünler için 'Pahalı'. 500 ile 100 arasında olan ürünler 'Orta' diğer ürünler 'Ucuz'
+olarak işaretleneceklerdir. Sorgu product_name,price ve yeni taglenmiş kısmı price_category ismiyle dönmelidir.

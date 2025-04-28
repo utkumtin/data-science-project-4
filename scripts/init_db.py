@@ -9,7 +9,7 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-cur.execute("""
+cur.execute("""         
 CREATE TABLE customers (
     customer_id SERIAL PRIMARY KEY,
     full_name VARCHAR(100),
@@ -18,7 +18,7 @@ CREATE TABLE customers (
 );
 """)
 
-cur.execute("""
+cur.execute("""            
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(100),
@@ -27,7 +27,7 @@ CREATE TABLE products (
 );
 """)
 
-cur.execute("""
+cur.execute("""           
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(customer_id),
