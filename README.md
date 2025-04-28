@@ -33,6 +33,6 @@ sırasıyla kendi local veritabanınızda çalıştırınız.
 7. Ortalama fiyatın üzerindeki ürünleri bulunuz.(Sorgu sadece prodduct_name ve price kolonlarını dönsün)
 8. Alışveriş sayısına göre en sadık müşterileri bulmak istiyoruz. Buna göre satış sayısı 5'ten büyük olanlara 'Sadık Müşteri', 2 ile 5 arasında olanlara 'Orta Seviye' diğer müşterilere de 'Yeni Müşteri' diyecek şekilde tüm müşterilerin isimlerini ve ve bu yeni tagi 'customer_category' ismiyle dönen sorguyu yazınız.
 9. Son 30 gün içinde sipariş veren müşterilerin isimlerini dönen sorguyu yazınız.
-10. En çok sipraiş verilen ürünü bulunuz.
+10. En çok sipariş verilen ürünü bulunuz.
 11. Ürün fiyatlarına göre etiketleme yapmak istiyoruz. Fiyatı 1000'den fazla olan ürünler için 'Pahalı'. 500 ile 100 arasında olan ürünler 'Orta' diğer ürünler 'Ucuz'
 olarak işaretleneceklerdir. Sorgu product_name,price ve yeni taglenmiş kısmı price_category ismiyle dönmelidir.
