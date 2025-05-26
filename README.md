@@ -1,4 +1,4 @@
-# Data Science SQL Project 4
+# Data Science SQL Project - VIEWS AND WITH 
 
 ### Proje Kurulumu
 Projeyi öncelikle forklayın ve clone edin.
