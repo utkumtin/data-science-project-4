@@ -27,7 +27,7 @@ sırasıyla kendi local veritabanınızda çalıştırınız.
 1. Completed siparişlerin listesini gösteren bir VIEW oluştur.
 2. Electronics kategorisindeki ürünleri gösteren bir VIEW oluştur.
 3. Her müşterinin toplam harcamasını WITH kullanarak hesapla.
-4. Sipariş ve ürün detaylarını birleştirerek toplam tutar (price * quantity) hesapla.
+4. Sipariş ve ürün detaylarını birleştirerek toplam tutar (price * quantity) hesapla. WITH kullanarak yap.
 5. En pahalı ürünü almış kişinin full name değerini döndüren sorguyu yazınız.
 6. Sipariş durumu 'completed' olanlar 'Tamamlandı', 'cancelled' olanlar ise 'İptal Edildi' şeklinde değiştirilip, order_id, status ve status_description kolonlarını dönen sqli yazınız.
 7. Ortalama fiyatın üzerindeki ürünleri bulunuz.(Sorgu sadece prodduct_name ve price kolonlarını dönsün)
